@@ -8,13 +8,12 @@ self_update() {
   echo "Performing self-update ..."
 
   echo "Downloading latest version..."
-  if ! wget --quiet --output-document="$SELF" "$REMOTE_SCRIPT"; then
+  if ! wget --quiet --output-document="$SELF.new" "$REMOTE_SCRIPT"; then
     echo "Failed: Error while trying to wget new version!"
     echo "File requested: REMOTE_SCRIPT"
     exit 1
   fi
   echo "Done."
-
 }
 
 main() {
