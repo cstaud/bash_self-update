@@ -25,7 +25,7 @@ self_update() {
 }
 
 go_fmt() {
-  docker run --rm -v "$ROOT_DIR":/app golang:1:14 go fmt
+  docker run --rm -v "$ROOT_DIR":/app golang:1.14 go fmt
 }
 
 main() {
