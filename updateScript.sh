@@ -1,10 +1,9 @@
 #!/bin/bash
 
-REPO_URL="https://raw.githubusercontent.com/cstaud/bash_self-update/master"
-SELF="$0"
-REMOTE_SCRIPT="$REPO_URL/$SELF"
-
 self_update() {
+  REPO_URL="https://raw.githubusercontent.com/cstaud/bash_self-update/master"
+  SELF="$0"
+  REMOTE_SCRIPT="$REPO_URL/$SELF"
 
   echo "Checking for self-update ..."
   diff=$(diff "$SELF" <(curl -s "$REMOTE_SCRIPT"))
@@ -25,9 +24,18 @@ self_update() {
   fi
 }
 
+go_fmt() {
+  docker run --rm -v "$ROOT_DIR":/app golang:1:14 go fmt
+}
+
 main() {
   echo "Running v0"
+  go_fmt
 }
+
+ROOT_DIR="$(git rev-parse --show-toplevel)"
+[[ -d "${ROOT_DIR}" ]] || exit 1
+
 
 self_update
 main
