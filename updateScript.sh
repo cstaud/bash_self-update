@@ -15,8 +15,8 @@ self_update() {
   else
     echo "Downloading latest version..."
 
-    if ! wget --quiet --output-document="$SELF.new" "$REMOTE_SCRIPT"; then
-      echo "Failed: Error while trying to wget new version!"
+    if ! curl --output "$SELF" "$REMOTE_SCRIPT"; then
+      echo "Failed: Error while trying to curl new version!"
       echo "File requested: REMOTE_SCRIPT"
       exit 1
     fi
