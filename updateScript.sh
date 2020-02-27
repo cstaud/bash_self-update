@@ -7,7 +7,7 @@ REMOTE_SCRIPT="$REPO_URL/$SELF"
 self_update() {
 
   echo "Checking for self-update ..."
-  diff=$(diff "$SELF" <(curl "$REMOTE_SCRIPT"))
+  diff=$(diff "$SELF" <(curl -s "$REMOTE_SCRIPT"))
 
   if [ -z "$diff" ]
   then
